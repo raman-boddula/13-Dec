@@ -7,7 +7,7 @@ const screenSchema = new mongoose.Schema({
     timing: { type: String, required: true },
     movie: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:"Movies",
+        ref:Movies,
         required: true
     },
     totalSeats: {
@@ -16,7 +16,7 @@ const screenSchema = new mongoose.Schema({
     },
     screen: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:"Screen",
+        ref:Screen,
         required: true
     }
 }, {

@@ -1,8 +1,13 @@
 const mongoose = require("mongoose");
 
+const Show = require("./show.model");
+
 const theatreSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    location: { type: String, required: true},
+    show: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Show,
+        required: true
+    }
 }, {
     versionKey: false,
     timestamps:true,
