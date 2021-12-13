@@ -33,6 +33,17 @@ router.get("/", async (req, res) => {
         return res.status(500).json({ status: "failed", message: e.message });
     }
 })
+
+router.get("/actor/:name", async (req, res) => {
+    try {
+        const movie = await Movie.find({"actors":req.params.name}).lean().exec();
+        return res.status(201).json({ userData: movie });
+    }
+    catch (e) {
+        return res.status(500).json({ status: "failed", message: e.message });
+    }
+})
+
 router.get("/:id", async (req, res) => {
     try {
         const user = await Movie.findById(req.params.id).lean().exec();
