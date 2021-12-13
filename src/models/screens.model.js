@@ -4,7 +4,7 @@ const Theatre = require("./theatre.model")
 
 const screenSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    theatre: {
+    theatre_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref:Theatre,
         required: true

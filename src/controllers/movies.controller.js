@@ -1,13 +1,22 @@
 const express = require("express");
 
-const User = require("../models/user.model");
+const Movie = require("../models/movies.model");
 
 const router = express.Router();
 
-router.post("/", async (req, res) => {
+const upload = require("../middlewares/upload")
+
+
+router.post("/",upload.single("poster_pic"), async (req, res) => {
     try {
-        const user = await User.create(req.body);
-        return res.status(201).json({ userData: user });
+        const movie = await Movie.create({
+            name: req.body.name,
+            actors: req.body.actors,
+            languages: req.body.languages,
+            poster_pic: req.file.path,
+            directors: req.body.directors,
+        });
+        return res.status(201).json({ userData: movie });
     }
     catch (e) {
         return res.status(500).json({ status: "failed", message: e.message });
@@ -15,8 +24,8 @@ router.post("/", async (req, res) => {
 })
 router.get("/", async (req, res) => {
     try {
-        const user = await User.find().lean().exec();
-        return res.status(201).json({ userData: user });
+        const movie = await Movie.find().lean().exec();
+        return res.status(201).json({ userData: movie });
     }
     catch (e) {
         return res.status(500).json({ status: "failed", message: e.message });
@@ -24,7 +33,7 @@ router.get("/", async (req, res) => {
 })
 router.get("/:id", async (req, res) => {
     try {
-        const user = await User.findById(req.params.id).lean().exec();
+        const user = await Movie.findById(req.params.id).lean().exec();
         return res.status(201).json({ userData: user });
     }
     catch (e) {
@@ -33,7 +42,7 @@ router.get("/:id", async (req, res) => {
 })
 router.patch("/:id", async (req, res) => {
     try {
-        const user = await User.findByIdAndUpdate(req.params.id,req.body,{new:1}).lean().exec();
+        const user = await Movie.findByIdAndUpdate(req.params.id,req.body,{new:1}).lean().exec();
         return res.status(201).json({ userData: user });
     }
     catch (e) {
@@ -42,7 +51,7 @@ router.patch("/:id", async (req, res) => {
 })
 router.delete("/:id", async (req, res) => {
     try {
-        const user = await User.findByIdAndDelete(req.params.id).lean().exec();
+        const user = await Movie.findByIdAndDelete(req.params.id).lean().exec();
         return res.status(201).json({ userData: user });
     }
     catch (e) {

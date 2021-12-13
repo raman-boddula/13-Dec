@@ -5,7 +5,7 @@ const Screen = require("./screens.model")
 
 const screenSchema = new mongoose.Schema({
     timing: { type: String, required: true },
-    movie: {
+    movie_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref:Movies,
         required: true
@@ -14,7 +14,7 @@ const screenSchema = new mongoose.Schema({
         type: Number,
         requiredPaths:true,
     },
-    screen: {
+    screen_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref:Screen,
         required: true

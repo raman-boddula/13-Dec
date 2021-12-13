@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Show = require("./show.model");
 
 const theatreSchema = new mongoose.Schema({
-    show: {
+    show_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: Show,
         required: true
