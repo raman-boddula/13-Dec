@@ -31,4 +31,7 @@ app.use("/shows", showsController);
 const query1 = require("./controllers/movies.controller");
 app.use("/movies", query1);
 
+const query2 = require("./controllers/shows.controller");
+app.use("/shows", query2);
+
 module.exports = app;
