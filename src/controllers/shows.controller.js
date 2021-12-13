@@ -25,6 +25,15 @@ router.get("/movies/:id", async (req, res) => {
         return res.status(500).json({ status: "failed", message: e.message });
     }
 })
+router.get("/nearest/:id", async (req, res) => {
+    try {
+        const movie = await Shows.find({"movie_id":req.params.id}).populate("movie_id").populate("screen_id").lean().exec();
+        return res.status(201).json({ userData: movie });
+    }
+    catch (e) {
+        return res.status(500).json({ status: "failed", message: e.message });
+    }
+})
 router.get("/", async (req, res) => {
     try {
         const movie = await Shows.find().populate("movie_id").populate("screen_id").lean().exec();
