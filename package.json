@@ -1,0 +1,24 @@
+{
+  "name": "13-dec",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raman-boddula/13-Dec.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raman-boddula/13-Dec/issues"
+  },
+  "homepage": "https://github.com/raman-boddula/13-Dec#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.1.1"
+  }
+}
