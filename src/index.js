@@ -47,4 +47,9 @@ app.use("/shows", query4);
 const query5 = require("./controllers/movies.controller");
 app.use("/shows", query5);
 
+//post /seat ( book seats for users and first check if the number of seats required by user is available and if yes then book it )
+const query6 = require("./controllers/query6.controller");
+app.use("/booking", query6);
+
+
 module.exports = app;
