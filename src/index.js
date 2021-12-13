@@ -4,8 +4,13 @@ const app = express();
 
 app.use(express.json());
 
-const UserController = require("./controllers/user.controller");
-app.use("/users", UserController);
+const Upload = require("./middlewares/upload")
+
+const { register, login } = require("./controllers/auth.controller");
+
+app.post("/register",Upload.single("profile_pic"), register);
+
+app.post("/login", login)
 
 const movieController = require("./controllers/movies.controller");
 app.use("/movies", movieController);

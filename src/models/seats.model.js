@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Show = require("./show.model");
 
-const theatreSchema = new mongoose.Schema({
+const seatsSchema = new mongoose.Schema({
     show_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: Show,
@@ -13,4 +13,4 @@ const theatreSchema = new mongoose.Schema({
     timestamps:true,
 }
 );
-module.exports=mongoose.model("theatre",theatreSchema)
+module.exports=mongoose.model("seats",seatsSchema)
