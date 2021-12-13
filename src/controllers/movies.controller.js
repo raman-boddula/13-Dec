@@ -4,16 +4,18 @@ const Movie = require("../models/movies.model");
 
 const router = express.Router();
 
+const multer = require("multer")
+
 const upload = require("../middlewares/upload")
 
-
-router.post("/",upload.single("poster_pic"), async (req, res) => {
+const path = require("path")
+router.post("/",upload.single("poster_url"), async (req, res) => {
     try {
         const movie = await Movie.create({
             name: req.body.name,
             actors: req.body.actors,
             languages: req.body.languages,
-            poster_pic: req.file.path,
+            poster_url: req.file.path,
             directors: req.body.directors,
         });
         return res.status(201).json({ userData: movie });

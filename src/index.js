@@ -27,4 +27,8 @@ app.use("/theatres", theatreController);
 const showsController = require("./controllers/shows.controller");
 app.use("/shows", showsController);
 
+
+const query1 = require("./controllers/movies.controller");
+app.use("/movies", query1);
+
 module.exports = app;

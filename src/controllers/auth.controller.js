@@ -5,7 +5,7 @@ const User = require("../models/user.model");
 const path = require('path')
 
 const newToken = (user) => {
-    return jwt.sign({ user: user }, "raman12");
+    return jwt.sign({ user}, "raman12");
 }
 
 
