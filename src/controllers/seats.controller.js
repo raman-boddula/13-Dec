@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
 })
 router.get("/:id", async (req, res) => {
     try {
-        const user = await Seats.findById(req.params.id).populate("show_id").lean().exec();
+        const user = await Seats.find({"show_id":req.params.id}).populate("show_id").lean().exec();
         return res.status(201).json({ userData: user });
     }
     catch (e) {
