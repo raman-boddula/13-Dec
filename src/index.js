@@ -28,28 +28,29 @@ const showsController = require("./controllers/shows.controller");
 app.use("/shows", showsController);
 
 
-//post /movies ( create movies with all details )
+//post /movies ( create movies with all details)
 const query1 = require("./controllers/movies.controller");
 app.use("/movies", query1);
+
 // get /shows ( get all shows for a particular movie )
 const query2 = require("./controllers/shows.controller");
 app.use("/shows", query2);
+
 //get /seats ( get all available seats for a show )
 const query3 = require("./controllers/seats.controller");
 app.use("/seats", query3);
-//get /shows/nearest ( get all shows of a movie in the same location as the user with seat available )
 
+//get /shows/nearest ( get all shows of a movie in the same location as the user with seat available )
 const query4 = require("./controllers/shows.controller");
 app.use("/shows", query4);
 
 //get /movies ( get all movies for a particular actor )
-
 const query5 = require("./controllers/movies.controller");
 app.use("/shows", query5);
 
 //post /seat ( book seats for users and first check if the number of seats required by user is available and if yes then book it )
 const query6 = require("./controllers/query6.controller");
-app.use("/booking", query6);
+app.use("/shows", query6);
 
 
 module.exports = app;

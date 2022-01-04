@@ -7,9 +7,9 @@ const router = express.Router();
 const multer = require("multer")
 
 const upload = require("../middlewares/upload")
-
+const authenticate = require("../middlewares/authenticate")
 const path = require("path")
-router.post("/",upload.single("poster_url"), async (req, res) => {
+router.post("/",upload.single("poster_url"),authenticate, async (req, res) => {
     try {
         const movie = await Movie.create({
             name: req.body.name,
@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
         return res.status(500).json({ status: "failed", message: e.message });
     }
 })
-
+//query5
 router.get("/actor/:name", async (req, res) => {
     try {
         const movie = await Movie.find({"actors":req.params.name}).lean().exec();

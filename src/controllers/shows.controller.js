@@ -25,9 +25,10 @@ router.get("/movies/:id", async (req, res) => {
         return res.status(500).json({ status: "failed", message: e.message });
     }
 })
+//query4
 router.get("/nearest/:id", async (req, res) => {
     try {
-        const movie = await Shows.find({"movie_id":req.params.id}).populate("movie_id").populate("screen_id").lean().exec();
+        const movie = await Shows.find({"movie_id":req.params.id}).populate("movie_id").populate({path:"screen_id",populate:{path:"theatre_id"}}).lean().exec();
         return res.status(201).json({ userData: movie });
     }
     catch (e) {
@@ -46,7 +47,13 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         const user = await Shows.findById(req.params.id).populate("movie_id").populate("screen_id").lean().exec();
-        return res.status(201).json({ userData: user });
+        if (user.totalSeats >= req.body.number_of_seats) {
+            // return true
+            return res.status(201).json({ Status: "Success", message: "you have successfully booked" });
+        } else {
+            return res.status(400).json({ Status: "failed", message: "no seats left" });
+            
+        }
     }
     catch (e) {
         return res.status(500).json({ status: "failed", message: e.message });

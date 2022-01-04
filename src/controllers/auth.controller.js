@@ -34,21 +34,19 @@ const register = async (req, res) => {
 }
 const login = async (req, res) => {
     try {
-        let user = await User.findOne({ email: req.body.email }).lean().exec();
+        let user = await User.findOne({ email: req.body.email });
 
-        if (!user)
+        if(!user)
             return res.status(401).json({
                 status: "failed",
                 message: "please provide another email",
             })
         let match = await user.checkPassword(req.body.password);
-        if (!match) {
+        if(!match) 
             return res.status(401).json({
                 status: "failed",
                 message: "please provide another email",
             })
-
-        }
         const token = newToken(user);
         res.status(201).json({user,token})
     }
@@ -58,4 +56,5 @@ const login = async (req, res) => {
     }
 }    
 
-module.exports={register,login,newToken}
+module.exports = { register, login };
+

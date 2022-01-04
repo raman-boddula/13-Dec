@@ -4,17 +4,17 @@ const Seats = require("../models/seats.model");
 
 const router = express.Router();
 
-
 router.post("/", async (req, res) => {
     try {
         const movie = await Seats.create(
             req.body);
         return res.status(201).json({ userData: movie });
     }
-    catch (e) {
+    catch (e){
         return res.status(500).json({ status: "failed", message: e.message });
     }
 })
+
 router.get("/", async (req, res) => {
     try {
         const movie = await Seats.find().populate("show_id").lean().exec();
@@ -24,6 +24,7 @@ router.get("/", async (req, res) => {
         return res.status(500).json({ status: "failed", message: e.message });
     }
 })
+//query3
 router.get("/:id", async (req, res) => {
     try {
         const user = await Seats.find({"show_id":req.params.id}).populate("show_id").lean().exec();
@@ -33,6 +34,7 @@ router.get("/:id", async (req, res) => {
         return res.status(500).json({ status: "failed", message: e.message });
     }
 })
+
 router.patch("/:id", async (req, res) => {
     try {
         const user = await Seats.findByIdAndUpdate(req.params.id,req.body,{new:1}).lean().exec();
@@ -42,6 +44,7 @@ router.patch("/:id", async (req, res) => {
         return res.status(500).json({ status: "failed", message: e.message });
     }
 })
+
 router.delete("/:id", async (req, res) => {
     try {
         const user = await Seats.findByIdAndDelete(req.params.id).lean().exec();
